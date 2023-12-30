@@ -39,7 +39,7 @@
                 <div class="row align-items-center">
                     <div class="site-logo col-6"><a href="{{ url('/') }}">JobBoard</a></div>
 
-                    <nav class="mx-auto site-navigation">
+                    <nav class="mx-auto site-navigation d-flex justify-content-center">
                         <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                             <li><a href="index.html" class="nav-link active">Home</a></li>
                             <li><a href="about.html">About</a></li>
