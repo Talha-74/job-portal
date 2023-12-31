@@ -22,6 +22,7 @@ class JobController extends Controller
      */
     public function create()
     {
+        return view('job');
     }
 
     /**
@@ -29,30 +30,34 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'job_title' => 'required',
-            'job_region' => 'required',
-            'job_type' => 'required',
-            'vacancy' => 'required',
-            'experience' => 'required',
-            'salary' => 'required',
-            'gender' => 'required',
-            'application_deadline' => 'required',
-            'job_description' => 'required',
-            'responsibilities' => 'required',
-            'education_and_experience' => 'required',
-            'other_benefits' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return redirect(route('job'))
-                ->withErrors($validator)
-                ->withInput();
-        }
         try {
+            $validator = Validator::make($request->all(), [
+                'job_title' => 'required',
+                'job_region' => 'required',
+                'job_type' => 'required',
+                'company' => 'required',
+                'vacancy' => 'required',
+                'experience' => 'required',
+                'salary' => 'required',
+                'gender' => 'required',
+                'application_deadline' => 'required',
+                'job_description' => 'required',
+                'responsibilities' => 'required',
+                'education_experience' => 'required',
+                'other_benefits' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect(route('job.create'))
+                ->withErrors($validator)
+                    ->withInput();
+            }
+
             $job = [
                 'job_title' => $request->job_title,
                 'job_region' => $request->job_region,
                 'job_type' => $request->job_type,
+                'company' => $request->company,
                 'vacancy' => $request->vacancy,
                 'experience' => $request->experience,
                 'salary' => $request->salary,
@@ -60,15 +65,16 @@ class JobController extends Controller
                 'application_deadline' => $request->application_deadline,
                 'job_description' => $request->job_description,
                 'responsibilities' => $request->responsibilities,
-                'education_and_experience' => $request->education_and_experience,
+                'education_experience' => $request->education_experience,
                 'other_benefits' => $request->other_benefits,
             ];
-            Job::create($job);
-            return redirect(route('job'))->with('success', 'Job created successfully');
-        } catch (\Throwable $th) {
-            return redirect(route('job'))->with('error', 'Something went wrong. Error: ' . $th->getMessage());
-        }
 
+            Job::create($job);
+
+            return redirect()->back()->with('message', 'Job created Successfully');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Something went wrong. Error: ' . $th->getMessage());
+        }
     }
 
     /**

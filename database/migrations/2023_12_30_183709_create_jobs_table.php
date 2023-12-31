@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('job_title');
             $table->string('job_region');
             $table->string('job_type');
+            $table->string('company');
             $table->string('vacancy');
             $table->string('experience');
             $table->string('salary');
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->date('application_deadline');
             $table->text('job_description');
             $table->text('responsibilities');
-            $table->text('education_and_experience');
+            $table->text('education_experience');
             $table->text('other_benefits');
             $table->timestamps();
         });

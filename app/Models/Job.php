@@ -12,6 +12,7 @@ class Job extends Model
         'job_title',
         'job_region',
         'job_type',
+        'company',
         'vacancy',
         'experience',
         'salary',
@@ -19,7 +20,7 @@ class Job extends Model
         'application_deadline',
         'job_description',
         'responsibilities',
-        'education_and_experience',
+        'education_experience',
         'other_benefits'
     ];
 }
