@@ -25,7 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         $jobs = Job::count();
-        $jobslist = Job::all(['job_title', 'company', 'job_region', 'job_type']);
+        $jobslist = Job::select(['job_title', 'company', 'job_region', 'job_type', 'image_path'])
+        ->orderBy('id', 'desc')
+        ->take(5)
+        ->get();
+        ;
         $data = [
             'jobs' => $jobs,
             'jobslist' => $jobslist

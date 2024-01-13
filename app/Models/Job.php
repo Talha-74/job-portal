@@ -21,6 +21,7 @@ class Job extends Model
         'job_description',
         'responsibilities',
         'education_experience',
-        'other_benefits'
+        'other_benefits',
+        'image_path'
     ];
 }

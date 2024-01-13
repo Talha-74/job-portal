@@ -26,6 +26,7 @@ return new class extends Migration
             $table->text('responsibilities');
             $table->text('education_experience');
             $table->text('other_benefits');
+            $table->string('image_path');
             $table->timestamps();
         });
     }
