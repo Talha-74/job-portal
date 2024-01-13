@@ -67,6 +67,7 @@ class JobController extends Controller
                 'responsibilities' => $request->responsibilities,
                 'education_experience' => $request->education_experience,
                 'other_benefits' => $request->other_benefits,
+                'image_path' => 'public/assets/images/job-images/job_logo_1.jpg'
             ];
 
             Job::create($job);
