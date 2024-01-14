@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\JobDetailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/job', [JobController::class, 'create'])->name('job.create');
 Route::post('/store/job', [JobController::class, 'store'])->name('job.store');
+
+Route::get('/job-detail/{job}', [JobDetailController::class, 'show'])->name('job.detail');
 
