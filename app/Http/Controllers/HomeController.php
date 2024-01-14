@@ -25,15 +25,24 @@ class HomeController extends Controller
     public function index()
     {
         $jobs = Job::count();
-        $jobslist = Job::select(['job_title', 'company', 'job_region', 'job_type', 'image_path'])
+        $jobslist = Job::select(['id', 'job_title', 'company', 'job_region', 'job_type', 'image_path'])
         ->orderBy('id', 'desc')
         ->take(5)
         ->get();
-        ;
+
         $data = [
             'jobs' => $jobs,
             'jobslist' => $jobslist
         ];
         return view('home')->with($data);
     }
+
+    // public function jobdetails($job)
+    // {
+    //     $jobdetail = Job::find($job);
+    //     $data = [
+    //         'jobdetail' => $jobdetail,
+    //     ];
+    //     return view('home')->with($data);
+    // }
 }
