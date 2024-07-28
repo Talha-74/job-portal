@@ -15,6 +15,7 @@ class Job extends Model
         'company',
         'vacancy',
         'experience',
+        'category',
         'salary',
         'gender',
         'application_deadline',

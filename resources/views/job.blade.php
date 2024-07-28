@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <!-- HOME -->
-<section class="section-hero overlay inner-page bg-image" style="background-image: url({{ asset('assets/images/hero_1.jpg') }}); margin-top:-24px;" id="home-section">
+<section class="section-hero overlay inner-page bg-image"
+    style="background-image: url({{ asset('assets/images/hero_1.jpg') }}); margin-top:-24px;" id="home-section">
 
     <div class="container">
         <div class="row">
@@ -20,6 +21,14 @@
 <section class="site-section">
     <div class="container">
 
+        @if (session()->has('message'))
+        <div class="alert alert-success" style="display: flex; align-items: center;">
+            {{ session()->get('message') }}
+            <button type="button" class="close" aria-hidden="true" style="margin-left: auto; margin-right: 0;"
+                onclick="this.parentElement.style.display='none'">X</button>
+        </div>
+        @endif
+
         <div class="row align-items-center mb-2">
             <div class="col-lg-8 mb-4 mb-lg-0">
                 <div class="d-flex align-items-center">
@@ -32,7 +41,8 @@
         </div>
         <div class="row mb-3">
             <div class="col-lg-12">
-                <form action="{{ route('job.store')}}" class="p-4 p-md-5 border rounded" method="POST">
+                <form action="{{ route('job.store')}}" class="p-4 p-md-5 border rounded" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     {{-- @if ($errors->any())
                     <div class="alert alert-danger">
@@ -47,12 +57,14 @@
                     <!--job details-->
                     <div class="form-group">
                         <label for="job-title">Job Title</label>
-                        <input type="text" name="job_title" class="form-control" id="job-title" placeholder="Product Designer">
+                        <input type="text" name="job_title" class="form-control" id="job-title"
+                            placeholder="Product Designer">
                     </div>
 
                     <div class="form-group">
                         <label for="job-region">Job Region</label>
-                        <select name="job_region" class="selectpicker border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
+                        <select name="job_region" class="selectpicker border rounded" id="job-region"
+                            data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
                             <option>Anywhere</option>
                             <option>San Francisco</option>
                             <option>Palo Alto</option>
@@ -67,7 +79,8 @@
 
                     <div class="form-group">
                         <label for="job-type">Job Type</label>
-                        <select name="job_type" class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
+                        <select name="job_type" class="selectpicker border rounded" id="job-type" data-style="btn-black"
+                            data-width="100%" data-live-search="true" title="Select Job Type">
                             <option>Part Time</option>
                             <option>Full Time</option>
                         </select>
@@ -85,7 +98,9 @@
 
                     <div class="form-group">
                         <label for="job-type">Experience</label>
-                        <select name="experience" class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Years of Experience">
+                        <select name="experience" class="selectpicker border rounded" id="job-type"
+                            data-style="btn-black" data-width="100%" data-live-search="true"
+                            title="Select Years of Experience">
                             <option>1-3 years</option>
                             <option>3-6 years</option>
                             <option>6-9 years</option>
@@ -93,7 +108,8 @@
                     </div>
                     <div class="form-group">
                         <label for="job-type">Salary</label>
-                        <select name="salary" class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Salary">
+                        <select name="salary" class="selectpicker border rounded" id="job-type" data-style="btn-black"
+                            data-width="100%" data-live-search="true" title="Select Salary">
                             <option>$50k - $70k</option>
                             <option>$70k - $100k</option>
                             <option>$100k - $150k</option>
@@ -101,8 +117,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="category">Job Category</label>
+                        <select name="category" class="selectpicker border rounded" id="category" data-style="btn-black"
+                            data-width="100%" data-live-search="true" title="Select Category">
+                            @foreach ($categories as $category)
+                            <option>{{ $category->name }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="job-type">Gender</label>
-                        <select name="gender" class="selectpicker border rounded" id="" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Gender">
+                        <select name="gender" class="selectpicker border rounded" id="" data-style="btn-black"
+                            data-width="100%" data-live-search="true" title="Select Gender">
                             <option>Male</option>
                             <option>Female</option>
                             <option>Any</option>
@@ -111,64 +139,55 @@
 
                     <div class="form-group">
                         <label for="job-location">Application Deadline</label>
-                        <input name="application_deadline" type="date" min="2024-01-01" max="2028-01-02"  class="form-control" id="" placeholder="e.g. 20-12-2022">
+                        <input name="application_deadline" type="date" min="2024-01-01" max="2028-01-02"
+                            class="form-control" id="" placeholder="e.g. 20-12-2022">
 
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="">Job Description</label>
-                            <textarea name="job_description" id="" cols="30" rows="7" class="form-control" placeholder="Write Job Description..."></textarea>
+                            <textarea name="job_description" id="" cols="30" rows="7" class="form-control"
+                                placeholder="Write Job Description..."></textarea>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="">Responsibilities</label>
-                            <textarea name="responsibilities" id="" cols="30" rows="7" class="form-control" placeholder="Write Responsibilities..."></textarea>
+                            <textarea name="responsibilities" id="" cols="30" rows="7" class="form-control"
+                                placeholder="Write Responsibilities..."></textarea>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="">Education & Experience</label>
-                            <textarea name="education_experience" id="" cols="30" rows="7" class="form-control" placeholder="Write Education & Experience..."></textarea>
+                            <textarea name="education_experience" id="" cols="30" rows="7" class="form-control"
+                                placeholder="Write Education & Experience..."></textarea>
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label class="text-black" for="">Other Benifits</label>
-                            <textarea name="other_benefits" id="" cols="30" rows="7" class="form-control" placeholder="Write Other Benifits..."></textarea>
+                            <textarea name="other_benefits" id="" cols="30" rows="7" class="form-control"
+                                placeholder="Write Other Benifits..."></textarea>
                         </div>
                     </div>
-
-                    <!--company details-->
-                    {{-- <div class="form-group">
-                             <input type="hidden" value="<?php echo $_SESSION['email']; ?>" name="company_email" class="form-control" id="" placeholder="Company Email">
-                         </div>
-                         <div class="form-group">
-                             <input type="hidden" name="company_name" value="<?php echo $_SESSION['username']; ?>" class="form-control" id="" placeholder="Company Name">
-                         </div>
-                         <div class="form-group">
-                             <input type="hidden" name="company_id" value="<?php echo $_SESSION['id']; ?>" class="form-control" id="" placeholder="Company ID">
-                         </div>
-                         <div class="form-group">
-                             <input type="hidden" name="company_image" value="<?php echo $_SESSION['image']; ?>" class="form-control" id="" placeholder="Company Image">
-                         </div> --}}
+                    <div class="row form-group">
+                        <label for="image_path">Job Related Image </label>
+                        <input type="file" name="image_path" id="image_path" class="form-control" style="padding-bottom: 40px;">
+                    </div>
                     <div class="col-lg-4 ml-auto">
                         <div class="row">
                             <div class="col-6">
-                                <input type="submit" name="submit" class="btn btn-block btn-primary btn-md" style="margin-left: 200px;" value="Save Job">
+                                <input type="submit" name="submit" class="btn btn-block btn-primary btn-md"
+                                    style="margin-left: 200px;" value="Save Job">
                             </div>
                         </div>
                     </div>
-                      @if (session()->has('message'))
-                      <div class="alert alert-success" style="display: flex; align-items: center;">
-                          {{ session()->get('message') }}
-                          <button type="button" class="close" aria-hidden="true" style="margin-left: auto; margin-right: 0;" onclick="this.parentElement.style.display='none'">X</button>
-                      </div>
-                      @endif
+
                 </form>
             </div>
         </div>
