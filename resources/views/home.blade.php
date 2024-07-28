@@ -163,9 +163,6 @@
 
             @endforelse
         </ul>
-
-
-
     </div>
 </section>
 

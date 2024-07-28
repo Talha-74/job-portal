@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('experience');
             $table->string('salary');
             $table->string('gender');
+            $table->string('category');
             $table->date('application_deadline');
             $table->text('job_description');
             $table->text('responsibilities');

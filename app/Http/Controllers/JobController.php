@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Job;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class JobController extends Controller
@@ -22,7 +24,8 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('job');
+        $categories = Category::all();
+        return view('job', ['categories' => $categories]);
     }
 
     /**
@@ -45,6 +48,7 @@ class JobController extends Controller
                 'responsibilities' => 'required',
                 'education_experience' => 'required',
                 'other_benefits' => 'required',
+                'image_path' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -53,21 +57,26 @@ class JobController extends Controller
                     ->withInput();
             }
 
+            if($request->hasFile('image_path'))
+            $imagePath = $request->file('image_path')->store('public/job-images');
+        $jobImage = url(Storage::url($imagePath));
+
             $job = [
-                'job_title' => $request->job_title,
-                'job_region' => $request->job_region,
-                'job_type' => $request->job_type,
-                'company' => $request->company,
-                'vacancy' => $request->vacancy,
-                'experience' => $request->experience,
-                'salary' => $request->salary,
-                'gender' => $request->gender,
-                'application_deadline' => $request->application_deadline,
-                'job_description' => $request->job_description,
-                'responsibilities' => $request->responsibilities,
-                'education_experience' => $request->education_experience,
-                'other_benefits' => $request->other_benefits,
-                'image_path' => 'public/assets/images/job-images/job_logo_1.jpg'
+                'job_title'             => $request->job_title,
+                'job_region'            => $request->job_region,
+                'job_type'              => $request->job_type,
+                'company'               => $request->company,
+                'vacancy'               => $request->vacancy,
+                'experience'            => $request->experience,
+                'category'              => $request->category,
+                'salary'                => $request->salary,
+                'gender'                => $request->gender,
+                'application_deadline'  => $request->application_deadline,
+                'job_description'       => $request->job_description,
+                'responsibilities'      => $request->responsibilities,
+                'education_experience'  => $request->education_experience,
+                'other_benefits'        => $request->other_benefits,
+                'image_path'            => $jobImage,
             ];
 
             Job::create($job);
