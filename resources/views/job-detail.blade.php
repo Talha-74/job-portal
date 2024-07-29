@@ -156,9 +156,9 @@
                     <div class="bg-light p-3 border rounded">
                         <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
                         <div class="px-3">
-                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
-                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
-                            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('job.detail', $job->id) }}&quote={{ urlencode($job->job_title) }}"class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                            <a href="https://twitter.com/intent/tweet?text={{ urlencode($job->job_title) }}&url={{ route('job.detail', $job->id) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('job.detail', $job->id) }}&title={{ urlencode($job->job_title) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                         </div>
                     </div>
 
@@ -172,7 +172,7 @@
 
         <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
-                <h2 class="section-title mb-2">22,392 Related Jobs</h2>
+                <h2 class="section-title mb-2">{{ $relatedJobsCount }} Related Jobs</h2>
             </div>
         </div>
 
