@@ -14,9 +14,12 @@ class JobDetailController extends Controller
             ->where('id', '!=', $job->id)
             ->take(5)
             ->get();
+        $relatedJobsCount = $relatedJobs->count();
+
         $data = [
             'job' => $job,
-            'relatedJobs' => $relatedJobs
+            'relatedJobs' => $relatedJobs,
+            'relatedJobsCount' => $relatedJobsCount
         ];
         return view('job-detail')->with($data);
     }
