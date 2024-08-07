@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\JobSaved;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobDetailController extends Controller
 {
@@ -16,10 +18,16 @@ class JobDetailController extends Controller
             ->get();
         $relatedJobsCount = $relatedJobs->count();
 
+        // save job:
+        $savedJob = JobSaved::where('job_id', $job->id)
+        ->where('user_id', Auth::user()->id)
+        ->count();
+// dd($savedJob);
         $data = [
             'job' => $job,
             'relatedJobs' => $relatedJobs,
-            'relatedJobsCount' => $relatedJobsCount
+            'relatedJobsCount' => $relatedJobsCount,
+            'savedJob' => $savedJob
         ];
         return view('job-detail')->with($data);
     }
