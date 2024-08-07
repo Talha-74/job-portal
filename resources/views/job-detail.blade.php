@@ -19,6 +19,14 @@
     </div>
 </section>
 
+@if (session()->has('message'))
+<div class="alert alert-success" style="display: flex; align-items: center;">
+    {{ session()->get('message') }}
+    <button type="button" class="close" aria-hidden="true" style="margin-left: auto; margin-right: 0;"
+        onclick="this.parentElement.style.display='none'">X</button>
+</div>
+@endif
+
 
 <section class="site-section">
     <div class="container">
@@ -102,30 +110,27 @@
                         <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span
                                 class="icon-turned_in mr-3"></span>Other Benifits</h3>
                         <p>{{ $job->other_benefits }}</p>
-                        {{-- <ul class="list-unstyled m-0 p-0">
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam
-                                    facilis</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et
-                                    voluptas reiciendis non sapiente labore</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est
-                                    itaque</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores
-                                    blanditiis nihil quia officiis dolor</span></li>
-                        </ul> --}}
                     </div>
-
                     <div class="row mb-5">
                         <div class="col-6">
-                            <button class="btn btn-block btn-light btn-md"><i class="icon-heart mr-2"></i>Save
-                                Job</button>
-                            <!--add text-danger to it to make it read-->
+                            <form action="{{ route('save.job') }}" method="POST">
+                                @csrf
+                                <input name="job_id" type="hidden" value="{{ $job->id }}">
+                                <input name="user_id" type="hidden" value="{{Auth::user()->id}}">
+                                <input name="image_path" type="hidden" value="{{ $job->image_path }}">
+                                <input name="job_title" type="hidden" value="{{ $job->job_title }}">
+                                <input name="job_region" type="hidden" value="{{ $job->job_region }}">
+                                <input name="job_type" type="hidden" value="{{ $job->job_type }}">
+                                <input name="company" type="hidden" value="{{ $job->company  }}">
+                                @if($savedJob > 0)
+                                <button name="submit" type="submit" class="btn btn-block btn-light btn-md" disabled><i
+                                        class="icon-heart mr-2"></i>You saved this Job</button>
+                                @else
+                                <button name="submit" type="submit" class="btn btn-block btn-light btn-md"><i
+                                        class="icon-heart mr-2"></i>
+                                    Save Job</button>
+                                @endif
+                            </form>
                         </div>
                         <div class="col-6">
                             <button class="btn btn-block btn-primary btn-md">Apply Now</button>
@@ -156,9 +161,12 @@
                     <div class="bg-light p-3 border rounded">
                         <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
                         <div class="px-3">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('job.detail', $job->id) }}&quote={{ urlencode($job->job_title) }}"class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
-                            <a href="https://twitter.com/intent/tweet?text={{ urlencode($job->job_title) }}&url={{ route('job.detail', $job->id) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('job.detail', $job->id) }}&title={{ urlencode($job->job_title) }}" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('job.detail', $job->id) }}&quote={{ urlencode($job->job_title) }}"
+                                class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                            <a href="https://twitter.com/intent/tweet?text={{ urlencode($job->job_title) }}&url={{ route('job.detail', $job->id) }}"
+                                class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('job.detail', $job->id) }}&title={{ urlencode($job->job_title) }}"
+                                class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                         </div>
                     </div>
 
@@ -181,7 +189,7 @@
             <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
                 <a href="{{ route('job.detail', ['job' => $job]) }}"></a>
                 <div class="job-listing-logo">
-                   <img src="{{ $job->image_path }}" alt="Image" class="img-fluid">
+                    <img src="{{ $job->image_path }}" alt="Image" class="img-fluid">
                 </div>
 
                 <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">

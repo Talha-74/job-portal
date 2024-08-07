@@ -29,4 +29,5 @@ Route::get('/job', [JobController::class, 'create'])->name('job.create');
 Route::post('/store/job', [JobController::class, 'store'])->name('job.store');
 
 Route::get('/job-detail/{job}', [JobDetailController::class, 'show'])->name('job.detail');
+Route::post('/save-job', [JobController::class, 'saveJob'])->name('save.job');
 

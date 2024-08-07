@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Job;
+use App\Models\JobSaved;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,13 +56,13 @@ class JobController extends Controller
 
             if ($validator->fails()) {
                 return redirect(route('job.create'))
-                ->withErrors($validator)
+                    ->withErrors($validator)
                     ->withInput();
             }
 
-            if($request->hasFile('image_path'))
-            $imagePath = $request->file('image_path')->store('public/job-images');
-        $jobImage = url(Storage::url($imagePath));
+            if ($request->hasFile('image_path'))
+                $imagePath = $request->file('image_path')->store('public/job-images');
+            $jobImage = url(Storage::url($imagePath));
 
             $job = [
                 'job_title'             => $request->job_title,
@@ -87,6 +90,29 @@ class JobController extends Controller
         }
     }
 
+    function saveJob(Request $request)
+    {
+
+        // Log the request data
+        Log::info('Request data:', $request->all());
+
+        // Validate request data if necessary
+        $validated = $request->validate([
+            'job_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'image_path' => 'required|string',
+            'job_title' => 'required|string',
+            'job_region' => 'required|string',
+            'job_type' => 'required|string',
+            'company' => 'required|string',
+        ]);
+
+        // Create the job saved record
+        $saveJob = JobSaved::create($validated);
+        if ($saveJob) {
+            return redirect('/job-detail/' . $request->job_id . '')->with('message', 'Job saved Successfully');
+        }
+    }
     /**
      * Display the specified resource.
      */
