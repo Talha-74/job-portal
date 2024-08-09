@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobSaved;
@@ -97,7 +98,7 @@ class JobController extends Controller
         Log::info('Request data:', $request->all());
 
         // Validate request data if necessary
-        $validated = $request->validate([
+        $validatedData = $request->validate([
             'job_id' => 'required|integer',
             'user_id' => 'required|integer',
             'image_path' => 'required|string',
@@ -108,11 +109,27 @@ class JobController extends Controller
         ]);
 
         // Create the job saved record
-        $saveJob = JobSaved::create($validated);
+        $saveJob = JobSaved::create($validatedData);
         if ($saveJob) {
             return redirect('/job-detail/' . $request->job_id . '')->with('message', 'Job saved Successfully');
         }
     }
+
+    function ApplyJob(Request $request)
+    {
+        $applyJob = Application::create([
+            'cv' => Auth::user()->cv,
+            'job_id' => $request->job_id,
+            'user_id' => Auth::user()->id,
+            'image_path' => $request->image_path,
+            'job_title' => $request->job_title,
+            'job_region' => $request->job_region,
+            'job_type' => $request->job_type,
+            'company' => $request->company,
+        ]);
+        return redirect()->back()->with('message', 'You apply for this job Successfully');
+    }
+
     /**
      * Display the specified resource.
      */

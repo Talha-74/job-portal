@@ -63,47 +63,12 @@
                         <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span
                                 class="icon-rocket mr-3"></span>Responsibilities</h3>
                         <p>{{ $job->responsibilities }}</p>
-                        {{-- <ul class="list-unstyled m-0 p-0">
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam
-                                    facilis</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et
-                                    voluptas reiciendis n Velit unde aliquam et voluptas reiciendis non sapiente
-                                    labore</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est
-                                    itaque</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores
-                                    blanditiis nihil quia officiis dolor</span></li>
-                        </ul> --}}
                     </div>
 
                     <div class="mb-5">
                         <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span
                                 class="icon-book mr-3"></span>Education + Experience</h3>
                         <p>{{ $job->education_experience }}</p>
-                        {{-- <ul class="list-unstyled m-0 p-0">
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam
-                                    facilis</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et
-                                    voluptas reiciendis non sapiente labore</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est
-                                    itaque</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet,
-                                    consectetur adipisicing elit</span></li>
-                            <li class="d-flex align-items-start mb-2"><span
-                                    class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores
-                                    blanditiis nihil quia officiis dolor</span></li>
-                        </ul> --}}
                     </div>
 
                     <div class="mb-5">
@@ -133,7 +98,22 @@
                             </form>
                         </div>
                         <div class="col-6">
-                            <button class="btn btn-block btn-primary btn-md">Apply Now</button>
+                            <form action="{{ route('apply.job') }}" method="POST">
+                                @csrf
+                                <input name="job_id" type="hidden" value="{{ $job->id }}">
+                                <input name="image_path" type="hidden" value="{{ $job->image_path }}">
+                                <input name="job_title" type="hidden" value="{{ $job->job_title }}">
+                                <input name="job_region" type="hidden" value="{{ $job->job_region }}">
+                                <input name="job_type" type="hidden" value="{{ $job->job_type }}">
+                                <input name="company" type="hidden" value="{{ $job->company  }}">
+                                @if($applied > 0)
+                                <button type="submit" name="submit" class="btn btn-block btn-primary btn-md"
+                                    disabled>Applied</button>  
+                                @else
+                                <button type="submit" name="submit" class="btn btn-block btn-primary btn-md">Apply
+                                    Now</button>
+                                @endif
+                            </form>
                         </div>
                     </div>
 
