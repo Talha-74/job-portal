@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\Job;
 use App\Models\JobSaved;
 use Illuminate\Http\Request;
@@ -20,14 +21,20 @@ class JobDetailController extends Controller
 
         // save job:
         $savedJob = JobSaved::where('job_id', $job->id)
-        ->where('user_id', Auth::user()->id)
+            ->where('user_id', Auth::user()->id)
+            ->count();
+
+        // applied to a job
+        $applied = Application::where('user_id', Auth::user()->id)
+        ->where('job_id', $job->id)
         ->count();
-// dd($savedJob);
+
         $data = [
-            'job' => $job,
-            'relatedJobs' => $relatedJobs,
+            'job'              => $job,
+            'relatedJobs'      => $relatedJobs,
             'relatedJobsCount' => $relatedJobsCount,
-            'savedJob' => $savedJob
+            'savedJob'         => $savedJob,
+            'applied'          => $applied,
         ];
         return view('job-detail')->with($data);
     }

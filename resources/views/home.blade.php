@@ -142,7 +142,7 @@
             <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
                 <a href="{{ route('job.detail', ['job' => $job]) }}"></a>
                 <div class="job-listing-logo">
-                    <img src="{{ asset('assets/images/job_logo_3.jpg') }}" alt="job-images" class="img-fluid">
+                    <img src="{{ $job->image_path}}" alt="job-images" class="img-fluid">
                 </div>
 
                 <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
