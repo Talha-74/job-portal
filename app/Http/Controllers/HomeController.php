@@ -36,13 +36,4 @@ class HomeController extends Controller
         ];
         return view('home')->with($data);
     }
-
-    // public function jobdetails($job)
-    // {
-    //     $jobdetail = Job::find($job);
-    //     $data = [
-    //         'jobdetail' => $jobdetail,
-    //     ];
-    //     return view('home')->with($data);
-    // }
 }
