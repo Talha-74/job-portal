@@ -108,7 +108,7 @@
                                 <input name="company" type="hidden" value="{{ $job->company  }}">
                                 @if($applied > 0)
                                 <button type="submit" name="submit" class="btn btn-block btn-primary btn-md"
-                                    disabled>Applied</button>  
+                                    disabled>Applied</button>
                                 @else
                                 <button type="submit" name="submit" class="btn btn-block btn-primary btn-md">Apply
                                     Now</button>
@@ -148,6 +148,17 @@
                             <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ route('job.detail', $job->id) }}&title={{ urlencode($job->job_title) }}"
                                 class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
                         </div>
+                    </div>
+
+                    {{-- Categories --}}
+                    <div class="bg-light mt-3 p-3 border rounded mb-4">
+                        <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Categories</h3>
+                        <ul class="list-unstyled pl-3 mb-0">
+                            @foreach ($categories as $category)
+                            <li class="mb-2"><a href="{{ route('category.job', ['name' => $category->name]) }}">{{ $category->name }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
                     </div>
 
                 </div>
@@ -192,7 +203,7 @@
 </section>
 
 
-<section class="bg-light pt-5 testimony-full">
+{{-- <section class="bg-light pt-5 testimony-full">
 
     <div class="owl-carousel single-carousel">
 
@@ -231,7 +242,7 @@
 
     </div>
 
-</section>
+</section> --}}
 
 <section class="pt-5 bg-image overlay-primary fixed overlay"
     style="background-image: url('{{ asset('assets/images/hero_1.jpg') }}'); margin-bottom:-24px;">

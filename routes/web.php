@@ -33,3 +33,5 @@ Route::post('/save-job', [JobController::class, 'saveJob'])->name('save.job');
 
 Route::post('/apply/job/', [JobController::class, 'ApplyJob'])->name('apply.job');
 
+Route::get('category/jobs/{name}', [JobDetailController::class, 'categoryJobs'])->name('category.job');
+
