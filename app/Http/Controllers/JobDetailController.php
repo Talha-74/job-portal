@@ -44,22 +44,11 @@ class JobDetailController extends Controller
         return view('job-detail')->with($data);
     }
 
-    public function categoryJobs($name)
+    public function singleCategoryJobs($name)
     {
-        // Get the count of all jobs and filter jobs by category
-        $jobs = Job::count();
-        $jobslist = Job::select(['id', 'job_title', 'company', 'job_region', 'job_type', 'image_path'])
-            ->where('category', $name)
-            ->orderBy('id', 'desc')
-            ->take(5)
-            ->get();
-
-        // Pass the filtered jobs and total jobs to the homepage
-        return redirect()->route('home')->with([
-            'jobs' => $jobs,
-            'jobslist' => $jobslist,
-            'filteredCategory' => $name,
-        ]);
+        $jobslist = Job::where('category', $name)->orderby('created_at', 'desc')->get();
+        // dd($jobslist);
+       return view('singleCategory', compact('jobslist', 'name'));
     }
 
 }
