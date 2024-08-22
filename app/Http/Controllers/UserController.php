@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\JobSaved;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,5 +21,11 @@ class UserController extends Controller
         $applications = Application::where('user_id', auth()->user()->id)->get();
 
         return view('userApplication', compact('applications'));
+    }
+
+    function savedJobs() {
+        $savedJobs = JobSaved::where('user_id', auth()->user()->id)->get();
+
+        return view('savedJobs', compact('savedJobs')); 
     }
 }
