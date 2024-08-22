@@ -27,7 +27,7 @@ Route::middleware('guest')->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
-    
+
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::get('/job', [JobController::class, 'create'])->name('job.create');
@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
 
     Route::get('/user/applications', [UserController::class, 'userApplications'])->name('user.applications');
+
+    Route::get('/savedJobs', [UserController::class, 'savedJobs'])->name('save.jobs');
 
 });
 

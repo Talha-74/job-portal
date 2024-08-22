@@ -76,6 +76,9 @@
                                          <a class="dropdown-item" href="{{ route('user.applications') }}">
                                             Applied
                                          </a>
+                                         <a class="dropdown-item" href="{{ route('save.jobs') }}">
+                                            Saved Jobs
+                                        </a>
                                      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                          {{ __('Logout') }}

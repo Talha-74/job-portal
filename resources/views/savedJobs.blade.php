@@ -7,10 +7,10 @@
 
         <div class="row">
             <div class="col-md-7">
-                <h1 class="text-white font-weight-bold">Applied</h1>
+                <h1 class="text-white font-weight-bold">Saved Jobs</h1>
                 <div class="custom-breadcrumbs">
                     <a href="#">Home</a> <span class="mx-2 slash">/</span>
-                    <a href="#">Applied</a> <span class="mx-2 slash">/</span>
+                    <a href="#"></a>Saved Jobs <span class="mx-2 slash">/</span>
                     <span class="text-white"><strong>{{ auth()->user()->name }}</strong></span>
                 </div>
             </div>
@@ -23,11 +23,11 @@
 
         <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
-                <h2 class="section-title mb-2">Applied</h2>
+                <h2 class="section-title mb-2">Saved Jobs</h2>
             </div>
         </div>
 
-        @forelse($applications as $job)
+        @forelse($savedJobs as $job)
         <ul class="job-listings mb-5">
             <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
                 <a href="{{ route('job.detail', ['job' => $job->id]) }}"></a>
@@ -50,7 +50,7 @@
 
             </li>
             @empty
-            <li>You haven't Applied for any job.</li>
+            <li>No jobs has been saved.</li>
             @endforelse
         </ul>
     </div>

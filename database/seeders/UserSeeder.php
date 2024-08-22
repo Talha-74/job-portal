@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -13,22 +14,22 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->count(10)->create();
-        // $users = [
-        //     [
+        // User::factory()->count(10)->create();
+        DB::transaction(function () {
 
-        //         'name' => 'talha',
-        //         'email' => 'talha@gmail.com',
-        //         'password' => bcrypt('talha1122')
-        //     ],
-        //     [
-        //         'name' => 'Admin',
-        //         'email' => 'admin@gmail.com',
-        //         'password' => bcrypt('admin1122')
-        //     ]
-        // ];
+            $superadmin = User::create([
+                'name' => 'Talha',
+                'email' => 'superadmin@gmail.com',
+                'password' => bcrypt('password')
+            ]);
+            $superadmin->assignRole('super admin');
 
-        // foreach ($users as $user)
-        //     User::create($user);
+            $admin = User::create([
+                'name' => 'sajid',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('password')
+            ]);
+            $admin->assignRole('admin');
+        });
     }
 }
