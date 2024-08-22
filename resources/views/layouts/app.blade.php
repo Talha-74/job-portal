@@ -14,6 +14,12 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     {{-- Our CSS files --}}
     <link rel="stylesheet" href="{{ asset('assets/css/custom-bs.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/jquery.fancybox.min.css') }}">
@@ -44,7 +50,6 @@
                             <li><a href="index.html" class="nav-link active">Home</a></li>
                             <li><a href="about.html">About</a></li>
 
-                            <li><a href="profile.html">Profile</a></li>
 
                             <li><a href="contact.html">Contact</a></li>
                             <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a>
@@ -65,12 +70,17 @@
                                  </a>
 
                                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                         <a class="dropdown-item" href="{{ route('profile') }}">
+                                            Profile
+                                         </a>
+                                         <a class="dropdown-item" href="{{ route('user.applications') }}">
+                                            Applied
+                                         </a>
                                      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                          {{ __('Logout') }}
                                      </a>
-
-                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                          @csrf
                                      </form>
                                  </div>
