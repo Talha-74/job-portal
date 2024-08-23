@@ -26,6 +26,10 @@ class UserController extends Controller
     function savedJobs() {
         $savedJobs = JobSaved::where('user_id', auth()->user()->id)->get();
 
-        return view('savedJobs', compact('savedJobs')); 
+        return view('savedJobs', compact('savedJobs'));
+    }
+
+    function edit() {
+        return view('edit-profile');
     }
 }

@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 'email' => 'superadmin@gmail.com',
                 'password' => bcrypt('password')
             ]);
-            $superadmin->assignRole('super admin');
+            $superadmin->assignRole('super-admin');
 
             $admin = User::create([
                 'name' => 'sajid',

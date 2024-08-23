@@ -22,31 +22,25 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::middleware('guest')->group(function() {
+// Public routes (Guest only)
+
     Auth::routes();
-});
 
-Route::middleware('auth')->group(function() {
-
+// Protected routes (Requires authentication)
+Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-
     Route::get('/job', [JobController::class, 'create'])->name('job.create');
-
     Route::post('/store/job', [JobController::class, 'store'])->name('job.store');
-
     Route::get('/job-detail/{job}', [JobDetailController::class, 'show'])->name('job.detail');
-
     Route::post('/save-job', [JobController::class, 'saveJob'])->name('save.job');
-
     Route::post('/apply/job/', [JobController::class, 'ApplyJob'])->name('apply.job');
-
     Route::get('category/jobs/{name}', [JobDetailController::class, 'singleCategoryJobs'])->name('category.job');
-
     Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
-
     Route::get('/user/applications', [UserController::class, 'userApplications'])->name('user.applications');
-
     Route::get('/savedJobs', [UserController::class, 'savedJobs'])->name('save.jobs');
 
+    Route::get('/edit/profile', [UserController::class, 'edit'])->name('edit.profile');
+    Route::post('/update/profile', [UserController::class, 'update'])->name('update.profile');
 });
+
 
