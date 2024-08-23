@@ -49,73 +49,78 @@
                         <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                             <li><a href="index.html" class="nav-link active">Home</a></li>
                             <li><a href="about.html">About</a></li>
-
-
                             <li><a href="contact.html">Contact</a></li>
                             <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a>
                             </li>
-                            @guest
-                            @if (Route::has('login'))
-                            <li class="d-lg"><a href="{{ route('login') }}">Log In</a></li>
+                            @if(Auth::check())
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                                    <a class="dropdown-item" href="{{ route('edit.profile') }}">Update Profile</a>
+                                    <a class="dropdown-item" href="{{ route('user.applications') }}">Applied</a>
+                                    <a class="dropdown-item" href="{{ route('save.jobs') }}">Saved Jobs</a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @else
 
+                            {{-- @if (Route::has('login')) --}}
+                            {{-- <li class="d-lg"><a href="{{ route('login') }}">Log In</a></li> --}}
+                            {{-- <li class="d-lg"><a href="{{ route('login') }}"
+                                    class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
+                                        class="mr-2 icon-lock_outline"></span>Log In</a></li> --}}
+
+                            {{-- @if (Route::has('register')) --}}
+                            {{-- <li class="d-lg"><a href="{{ route('register') }}">Register</a></li> --}}
+                            {{-- <li class="d-lg"><a href="{{ route('register') }}"
+                                    class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
+                                        class="mr-2 icon-lock_outline"></span>Register</a></li> --}}
                             @endif
-                            @if (Route::has('register'))
-                            <li class="d-lg"><a href="{{ route('register') }}">Register</a></li>
-
-                            @endif
-                             @else
-                             <li class="nav-item dropdown">
-                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                     {{ Auth::user()->name }}
-                                 </a>
-
-                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                         <a class="dropdown-item" href="{{ route('profile') }}">
-                                            Profile
-                                         </a>
-                                         <a class="dropdown-item" href="{{ route('user.applications') }}">
-                                            Applied
-                                         </a>
-                                         <a class="dropdown-item" href="{{ route('save.jobs') }}">
-                                            Saved Jobs
-                                        </a>
-                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                         {{ __('Logout') }}
-                                     </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                         @csrf
-                                     </form>
-                                 </div>
-                             </li>
-                             @endguest
-
                         </ul>
                     </nav>
 
                     <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
                         <div class="ml-auto">
-                            <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
-                            {{-- <a href="register.html"
-                                class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
-                                    class="mr-2 icon-lock_outline"></span>Register</a>
-                            <a href="login.html" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span
-                                    class="mr-2 icon-lock_outline"></span>Log In</a> --}}
-                        </div>
-                        <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
-                    </div>
+                            @auth
+                            <a href="{{ route('job.create')}}"
+                                class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span
+                                    class="mr-2 icon-add"></span>Post a Job</a>
+                            @endauth
 
+                            @guest
+                            <a href="{{ route('login') }}"
+                                class="btn btn-outline-warning border-width-2 d-none d-lg-inline-block"><span
+                                    class="mr-3 icon-lock_outline"></span>Log In</a>
+                            <a href="{{ route('register') }}"
+                                class="btn btn-primary ml-3 border-width-2 d-none d-lg-inline-block"><span
+                                    class="mr-3 icon-lock_outline"></span>Register</a>
+                            @endguest
+                        </div>
+                        <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span
+                                class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                    </div>
                 </div>
             </div>
         </header>
-
 
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -142,7 +147,8 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
 
@@ -223,8 +229,11 @@
                             Copyright &copy;<script>
                                 document.write(new Date().getFullYear());
 
-                            </script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>. Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></small></p>
+                            </script> All rights reserved | This template is made with <i class="icon-heart text-danger"
+                                aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>.
+                            Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </small></p>
                 </div>
             </div>
         </div>
