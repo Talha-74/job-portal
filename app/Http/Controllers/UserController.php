@@ -43,17 +43,18 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        $cv = $user->cv; 
+        // dd($request->all());
+        $cv = $user->cv;
         $image = $user->image;
 
-        if ($request->hasFile('cv')){
+        if ($request->hasFile('cv')) {
             $cvpath = $request->file('cv')->store('public/user-cvs');
-        $cv = url(Storage::url($cvpath));
+            $cv = url(Storage::url($cvpath));
         }
 
-        if ($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/user-images');
-        $image = url(Storage::url($imagePath));
+            $image = url(Storage::url($imagePath));
         }
 
         $user->update([
@@ -69,5 +70,34 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Your profile updated successfully');
+    }
+
+    // Update user CV
+    function editCV()
+    {
+        return view('editCV');
+    }
+
+    function updateCV(Request $request)
+    {
+        $user = auth()->user();
+        if ($request->hasFile('cv')) {
+
+            if ($user->cv) {
+                $oldCVPath = str_replace(url('/storage'), 'public', $user->cv); // Convert the URL to a storage path
+                if (Storage::exists($oldCVPath)) {
+                    Storage::delete($oldCVPath);
+                }
+            }
+            
+            $cvpath = $request->file('cv')->store('public/user-cvs');
+            $cv = url(Storage::url($cvpath));
+
+            $user->update([
+                'cv' => $cv,
+            ]);
+            return redirect()->back()->with('success', 'CV updated Successfully');
+        }
+        return redirect()->back()->with('error', 'There is an error updating CV');
     }
 }

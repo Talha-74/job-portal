@@ -41,6 +41,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/edit/profile', [UserController::class, 'edit'])->name('edit.profile');
     Route::post('/update/profile', [UserController::class, 'update'])->name('update.profile');
+
+    Route::get('edit/user/cv', [UserController::class, 'editCV'])->name('edit.cv');
+    Route::post('update/user/cv', [UserController::class, 'updateCV'])->name('update.cv');
 });
 
 
