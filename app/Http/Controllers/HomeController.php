@@ -36,4 +36,12 @@ class HomeController extends Controller
         ];
         return view('home')->with($data);
     }
+
+    function about() {
+        return view('about');
+    }
+
+    function contact() {
+        return view('contact');
+    }
 }
