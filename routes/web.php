@@ -29,12 +29,17 @@ use Illuminate\Support\Facades\Route;
 // Protected routes (Requires authentication)
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
     Route::get('/job', [JobController::class, 'create'])->name('job.create');
     Route::post('/store/job', [JobController::class, 'store'])->name('job.store');
     Route::get('/job-detail/{job}', [JobDetailController::class, 'show'])->name('job.detail');
     Route::post('/save-job', [JobController::class, 'saveJob'])->name('save.job');
     Route::post('/apply/job/', [JobController::class, 'ApplyJob'])->name('apply.job');
+
     Route::get('category/jobs/{name}', [JobDetailController::class, 'singleCategoryJobs'])->name('category.job');
+    
     Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
     Route::get('/user/applications', [UserController::class, 'userApplications'])->name('user.applications');
     Route::get('/savedJobs', [UserController::class, 'savedJobs'])->name('save.jobs');
