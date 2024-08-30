@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Job;
+use App\Models\TrendingKeywords;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,9 +32,17 @@ class HomeController extends Controller
         ->take(5)
         ->get();
 
+        $cities = City::all()->groupBy('province');
+
+
+
+        $keywords = TrendingKeywords::latest()->take(5)->get();
+
         $data = [
             'jobs' => $jobs,
-            'jobslist' => $jobslist
+            'jobslist' => $jobslist,
+            'cities' => $cities,
+            'keywords' => $keywords
         ];
         return view('home')->with($data);
     }

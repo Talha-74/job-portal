@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Application;
 use App\Models\Category;
+use App\Models\City;
 use App\Models\Job;
 use App\Models\JobSaved;
+use App\Models\TrendingKeywords;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +31,8 @@ class JobController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('job', ['categories' => $categories]);
+        $cities = City::all()->groupBy('province');
+        return view('job', compact('categories', 'cities'));
     }
 
     /**
@@ -133,9 +136,31 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Job $job)
+    public function searchResult(Request $request)
     {
-        //
+        $job_title = $request->get('job_title');
+        $job_region = $request->get('job_region');
+        $job_type = $request->get('job_type');
+
+        $searchResult = Job::where(function ($query) use ($job_title, $job_region, $job_type) {
+            $query->where('job_title', 'like', "%{$job_title}%")
+                ->orWhere('job_region', 'like', "%{$job_region}%")
+                ->orWhere('job_type', 'like', "%{$job_type}%");
+        })->get();
+
+        // Storing trending keyword
+        $trendingKeyword = TrendingKeywords::where('keyword', $request->job_title)->first();
+
+        if($trendingKeyword) {
+            // If it exists, just update the `updated_at` timestamp
+            $trendingKeyword->touch();
+        } else {
+            $trendingKeyword = TrendingKeywords::create([
+            'keyword' => $request->job_title,
+        ]);
+    }
+
+        return view('searchResult', compact('searchResult'));
     }
 
     /**

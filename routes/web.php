@@ -7,6 +7,8 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use function Laravel\Prompts\search;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public routes (Guest only)
 
-    Auth::routes();
+Auth::routes();
 
 // Protected routes (Requires authentication)
 Route::middleware('auth')->group(function () {
@@ -39,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/apply/job/', [JobController::class, 'ApplyJob'])->name('apply.job');
 
     Route::get('category/jobs/{name}', [JobDetailController::class, 'singleCategoryJobs'])->name('category.job');
-    
+
     Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
     Route::get('/user/applications', [UserController::class, 'userApplications'])->name('user.applications');
     Route::get('/savedJobs', [UserController::class, 'savedJobs'])->name('save.jobs');
@@ -49,6 +51,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('edit/user/cv', [UserController::class, 'editCV'])->name('edit.cv');
     Route::post('update/user/cv', [UserController::class, 'updateCV'])->name('update.cv');
+
+    Route::any('search/result', [JobController::class, 'searchResult'])->name('search.jobs');
 });
-
-
