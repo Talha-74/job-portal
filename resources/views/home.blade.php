@@ -5,49 +5,60 @@
 
 
 <!-- HOME -->
-<section class="home-section section-hero overlay bg-image" style="background-image: url({{ asset('assets/images/hero_1.jpg') }}); margin-top:-30px;" id="home-section">
+<section class="home-section section-hero overlay bg-image"
+    style="background-image: url({{ asset('assets/images/hero_1.jpg') }}); margin-top:-30px;" id="home-section">
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-md-12">
                 <div class="mb-5 text-center">
                     <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur
+                        perferendis.</p>
                 </div>
-                <form method="post" class="search-jobs-form">
+                <form method="post" action="{{ route('search.jobs') }}" class="search-jobs-form">
+                    @csrf
                     <div class="row mb-5">
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                            <input type="text" class="form-control form-control-lg" placeholder="Job title, Company...">
+                            <input name="job_title" type="text" class="form-control form-control-lg"
+                                placeholder="Job title, Company...">
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                            <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
-                                <option>Anywhere</option>
-                                <option>San Francisco</option>
-                                <option>Palo Alto</option>
-                                <option>New York</option>
-                                <option>Manhattan</option>
-                                <option>Ontario</option>
-                                <option>Toronto</option>
-                                <option>Kansas</option>
-                                <option>Mountain View</option>
-                            </select>
+                            <select name="job_region" class="selectpicker" data-style="btn-white btn-lg"
+                                data-width="100%" data-live-search="true" title="Select Region">
+                                {{-- <select name="Location" id="Location" required> --}}
+                                    <option value="" disabled selected>Select The City</option>
+
+                                    @foreach($cities as $province => $provinceCities)
+                                    <option value="" style="background: greenyellow" disabled>{{ $province }} Cities
+                                    </option>
+                                    @foreach($provinceCities as $city)
+                                    <option value="{{ $city->name }}">{{ $city->name }}</option>
+                                    @endforeach
+                                    @endforeach
+                                </select>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                            <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Job Type">
+                            <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%"
+                                data-live-search="true" title="Select Job Type">
                                 <option>Part Time</option>
                                 <option>Full Time</option>
                             </select>
                         </div>
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
+                            <button name="submit" type="submit"
+                                class="btn btn-primary btn-lg btn-block text-white btn-search"><span
+                                    class="icon-search icon mr-2"></span>Search Job</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 popular-keywords">
                             <h3>Trending Keywords:</h3>
                             <ul class="keywords list-unstyled m-0 p-0">
-                                <li><a href="#" class="">UI Designer</a></li>
-                                <li><a href="#" class="">Python</a></li>
-                                <li><a href="#" class="">Developer</a></li>
+                                @foreach ($keywords as $keyword)
+                                <li><a href="#" class="">{{ $keyword->keyword }}</a></li>
+                                @endforeach
+                                {{-- <li><a href="#" class="">Python</a></li>
+                                <li><a href="#" class="">Developer</a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -62,13 +73,15 @@
 
 </section>
 
-<section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="background-image: url({{ asset('assets/images/hero_1.jpg') }});">
+<section class="py-5 bg-image overlay-primary fixed overlay" id="next"
+    style="background-image: url({{ asset('assets/images/hero_1.jpg') }});">
 
     <div class="container">
         <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
                 <h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
-                <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde officiis recusandae sequi excepturi corrupti.</p>
+                <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde
+                    officiis recusandae sequi excepturi corrupti.</p>
             </div>
         </div>
         <div class="row pb-0 block__19738 section-counter">
@@ -109,41 +122,41 @@
 
 
 <section class="site-section">
-   <div class="container">
+    <div class="container">
 
-    <div class="row mb-5 justify-content-center">
-        <div class="col-md-7 text-center">
-            <h2 class="section-title mb-2">{{ $jobs }} Job Listed</h2>
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-7 text-center">
+                <h2 class="section-title mb-2">{{ $jobs }} Job Listed</h2>
+            </div>
         </div>
+
+        @forelse($jobslist as $job)
+        <ul class="job-listings mb-5">
+            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                <a href="{{ route('job.detail', ['job' => $job->id]) }}"></a>
+                <div class="job-listing-logo">
+                    <img src="{{ $job->image_path }}" alt="job-images" class="img-fluid">
+                </div>
+
+                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                        <h2>{{ $job->job_title }}</h2>
+                        <strong>{{ $job->company }}</strong>
+                    </div>
+                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                        <span class="icon-room"></span>{{ $job->job_region }}
+                    </div>
+                    <div class="job-listing-meta">
+                        <span class="badge badge-danger">{{ $job->job_type }}</span>
+                    </div>
+                </div>
+
+            </li>
+            @empty
+            <li>No jobs available in this category.</li>
+            @endforelse
+        </ul>
     </div>
-
-    @forelse($jobslist as $job)
-    <ul class="job-listings mb-5">
-        <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
-            <a href="{{ route('job.detail', ['job' => $job->id]) }}"></a>
-            <div class="job-listing-logo">
-                <img src="{{ $job->image_path }}" alt="job-images" class="img-fluid">
-            </div>
-
-            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                    <h2>{{ $job->job_title }}</h2>
-                    <strong>{{ $job->company }}</strong>
-                </div>
-                <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                    <span class="icon-room"></span>{{ $job->job_region }}
-                </div>
-                <div class="job-listing-meta">
-                    <span class="badge badge-danger">{{ $job->job_type }}</span>
-                </div>
-            </div>
-
-        </li>
-        @empty
-        <li>No jobs available in this category.</li>
-        @endforelse
-    </ul>
-</div>
 </section>
 
 
@@ -152,7 +165,8 @@
         <div class="row align-items-center">
             <div class="col-md-8">
                 <h2 class="text-white">Looking For A Job?</h2>
-                <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
+                <p class="mb-0 text-white lead">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci
+                    impedit.</p>
             </div>
             <div class="col-md-3 ml-auto">
                 <a href="#" class="btn btn-warning btn-block btn-lg">Sign Up</a>
@@ -170,7 +184,8 @@
                 <div class="row justify-content-center">
                     <div class="col-md-7">
                         <h2 class="section-title mb-2">Company We've Helped</h2>
-                        <p class="lead">Porro error reiciendis commodi beatae omnis similique voluptate rerum ipsam fugit mollitia ipsum facilis expedita tempora suscipit iste</p>
+                        <p class="lead">Porro error reiciendis commodi beatae omnis similique voluptate rerum ipsam
+                            fugit mollitia ipsum facilis expedita tempora suscipit iste</p>
                     </div>
                 </div>
 
@@ -214,7 +229,9 @@
             <div class="row">
                 <div class="col-lg-6 align-self-center text-center text-lg-left">
                     <blockquote>
-                        <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
+                        <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero
+                            dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum
+                            repudiandae.&rdquo;</p>
                         <p><cite> &mdash; Corey Woods, @Dribbble</cite></p>
                     </blockquote>
                 </div>
@@ -228,7 +245,9 @@
             <div class="row">
                 <div class="col-lg-6 align-self-center text-center text-lg-left">
                     <blockquote>
-                        <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum repudiandae.&rdquo;</p>
+                        <p>&ldquo;Soluta quasi cum delectus eum facilis recusandae nesciunt molestias accusantium libero
+                            dolores repellat id in dolorem laborum ad modi qui at quas dolorum voluptatem voluptatum
+                            repudiandae.&rdquo;</p>
                         <p><cite> &mdash; Chris Peters, @Google</cite></p>
                     </blockquote>
                 </div>
@@ -242,19 +261,24 @@
 
 </section>
 
-<section class="pt-5 bg-image overlay-primary fixed overlay" style="background-image: url('{{ asset('assets/images/hero_1.jpg') }}'); margin-bottom:-20px;">
+<section class="pt-5 bg-image overlay-primary fixed overlay"
+    style="background-image: url('{{ asset('assets/images/hero_1.jpg') }}'); margin-bottom:-20px;">
     <div class="container">
         <div class="row">
             <div class="col-md-6 align-self-center text-center text-md-left mb-5 mb-md-0">
                 <h2 class="text-white">Get The Mobile Apps</h2>
-                <p class="mb-5 lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci impedit.</p>
+                <p class="mb-5 lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit tempora adipisci
+                    impedit.</p>
                 <p class="mb-0">
-                    <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-apple mr-3"></span>App Store</a>
-                    <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-android mr-3"></span>Play Store</a>
+                    <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span class="icon-apple mr-3"></span>App
+                        Store</a>
+                    <a href="#" class="btn btn-dark btn-md px-4 border-width-2"><span
+                            class="icon-android mr-3"></span>Play Store</a>
                 </p>
             </div>
             <div class="col-md-6 ml-auto align-self-end">
-                <img src="{{ asset('assets/images/apps.png') }}" alt="Free Website Template by Free-Template.co" class="img-fluid">
+                <img src="{{ asset('assets/images/apps.png') }}" alt="Free Website Template by Free-Template.co"
+                    class="img-fluid">
             </div>
         </div>
     </div>

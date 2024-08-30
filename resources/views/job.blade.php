@@ -65,15 +65,12 @@
                         <label for="job-region">Job Region</label>
                         <select name="job_region" class="selectpicker border rounded" id="job-region"
                             data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
-                            <option>Anywhere</option>
-                            <option>San Francisco</option>
-                            <option>Palo Alto</option>
-                            <option>New York</option>
-                            <option>Manhattan</option>
-                            <option>Ontario</option>
-                            <option>Toronto</option>
-                            <option>Kansas</option>
-                            <option>Mountain View</option>
+                            @foreach($cities as $province => $provinceCities)
+                            <option value="" style="background: greenyellow" disabled>{{ $province }} Cities</option>
+                            @foreach($provinceCities as $city)
+                            <option value="{{ $city->name }}">{{ $city->name }}</option>
+                            @endforeach
+                            @endforeach
                         </select>
                     </div>
 

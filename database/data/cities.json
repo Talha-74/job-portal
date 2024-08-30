@@ -1,0 +1,614 @@
+[
+    {
+        "name": "Islamabad",
+        "province": "Islamabad"
+    },
+    {
+        "Name": "Bagh",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Bhimber",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Hattian Bala",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Haveli",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Kotli",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Mirpur",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Muzzafarabad",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Neelum Valley",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Rawalkot",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Sudhanoti",
+        "province": "Azad Kashmir"
+    },
+    {
+        "Name": "Awaran",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Barkhan",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Chagai",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Chaman",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Dera Bugti",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Gawadar",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Harnai",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Jafarabad",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Kacchi",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Kalat",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Kech",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Kharan",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Khuzdar",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Killa Abdullah",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Kila Saifullah",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Kohlu",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Lasbela",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Lehri",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Loralai",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Mastung",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Nasirabad",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Nushki",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Panjgur",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Pishi Valley",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Quetta",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Sherani",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Sibi",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Sohbatpur",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Washuk",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Zhob",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Ziarat",
+        "province": "Balochistan"
+    },
+    {
+        "Name": "Astore",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Chilas",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Darel",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Diamer",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Ghanche",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "GHizer",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Gilgit",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Gojal Upper Hunza",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Gupis Yasin",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Kharmang",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Rondu",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Shigar",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Skardu",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Tangir",
+        "province": "Gilgit Baltistan"
+    },
+    {
+        "Name": "Abbottabad",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Bajaur Agency",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Bannu",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Battagram",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Buner",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Charsadda",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Chitral",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Dera Ismail Khan",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Dir",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Hangu",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Haripur",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Karak",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Khyber Agency",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Kohat",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Kohistan",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Kurram Agency",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Lakki Marwat",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Malakand",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Mansehra",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Mardan",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Muhmad Agency",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "North Waziristan Agency",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Nowshera",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Peshawar",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Shangal",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "South Waziristan Agency",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Swabi",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Swat",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Tank",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Torghar",
+        "province": "Khyber Pakhtoonkhwa"
+    },
+    {
+        "Name": "Ahmedpur East",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Attock",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Bhawalnagar",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Bahawalpur",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Bhakkar",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Chakwal",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Chichawatni",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Chiniot",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Dera Ghazi Khan",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Faisalabad",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Gujranwala",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Gujrat",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Hafizabad",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Islamabad",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Jhang",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Jhelum",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Kala Bagh",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Kallar Kahar",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Kasur",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Khanewal",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Khushab",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Lahore",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Layyah",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Lodhran",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Mandi Bahauddin",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Mianwali",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Minchinabad",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Multan",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Murree",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Muzaffargarh",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Nankana Sahib",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Narowal",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Okara",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Pakpatan",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Rahimyar Khan",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Rajanpur",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Rawalpindi",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Sahiwal",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Sargodha",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Shakargarh",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Sheikhupura",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Sialkot",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Toba Tek Singh",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Uch Sharif",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Vehari",
+        "province": "Punjab"
+    },
+    {
+        "Name": "Badin",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Dadu",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Ghotki",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Hyderabad",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Jacobabad",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Jamshoro",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Karachi",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Kashmore",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Khairpur",
+        "province": "Sindh"
+    },
+    {
+        "Name": ":Larkana",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Matiari",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Qambar Shahdakot",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Sanghar",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Shaheed Benazirabad",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Shikarpur",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Sujawal",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Sukkur",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Tando Allahyar",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Tando Muhammad Khan",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Tharparkar",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Thatta",
+        "province": "Sindh"
+    },
+    {
+        "Name": "Umerkot",
+        "province": "Sindh"
+    }
+]
