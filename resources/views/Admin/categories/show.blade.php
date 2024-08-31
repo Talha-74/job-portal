@@ -4,8 +4,6 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title mb-4 d-inline">Admins</h5>
-
                 @if (Session::has('success'))
                 <div class="w-100 mb-4 alert alert-pro alert-success alert-dismissible">
                     <div class="alert-text">
@@ -23,29 +21,36 @@
                     <button class="close" data-dismiss="alert"></button>
                 </div>
                 @endif
+                <h5 class="card-title mb-4 d-inline">Categories</h5>
 
-                <a href="{{ route('create.admin') }}" class="btn btn-primary mb-4 text-center float-right">Create
-                    Admins</a>
-                <?php $i=0; ?>
+                <a href="{{ route('create.category') }}" class="btn btn-primary mb-4 text-center float-right">Create
+                    Categories</a>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($admins as $admin)
+                        <?php $i = 1; ?>
+                        @foreach ($categories as $item)
                         <tr>
-                            <th scope="row">{{ ++$i }}</th>
-                            <td>{{ $admin->name }}</td>
-                            <td>{{ $admin->email }}</td>
-
+                            <th scope="row">{{ $i++ }}</th>
+                            <td>{{ $item->name }}</td>
+                            <td><a href="{{ route('edit.category', $item->id) }}" class="btn btn-warning text-white text-center ">Update </a></td>
+                            <td>
+                                <form action="{{ route('delete.category', $item->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger text-center">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
-
-
                     </tbody>
                 </table>
             </div>

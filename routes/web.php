@@ -20,29 +20,42 @@ Route::middleware('auth')->group(function () {
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
-    Route::get('/job', [JobController::class, 'create'])->name('job.create');
-    Route::post('/store/job', [JobController::class, 'store'])->name('job.store');
-    Route::get('/job-detail/{job}', [JobDetailController::class, 'show'])->name('job.detail');
-    Route::post('/save-job', [JobController::class, 'saveJob'])->name('save.job');
-    Route::post('/apply/job/', [JobController::class, 'ApplyJob'])->name('apply.job');
+    Route::controller(JobController::class)->group(function() {
+        Route::get('/job', 'create')->name('job.create');
+        Route::post('/store/job', 'store')->name('job.store');
+        Route::post('/save-job', 'saveJob')->name('save.job');
+        Route::post('/apply/job/', 'ApplyJob')->name('apply.job');
+        Route::any('search/result', 'searchResult')->name('search.jobs');
 
+    });
+
+    Route::get('/job-detail/{job}', [JobDetailController::class, 'show'])->name('job.detail');
     Route::get('category/jobs/{name}', [JobDetailController::class, 'singleCategoryJobs'])->name('category.job');
 
-    Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
-    Route::get('/user/applications', [UserController::class, 'userApplications'])->name('user.applications');
-    Route::get('/savedJobs', [UserController::class, 'savedJobs'])->name('save.jobs');
-
-    Route::get('/edit/profile', [UserController::class, 'edit'])->name('edit.profile');
-    Route::post('/update/profile', [UserController::class, 'update'])->name('update.profile');
-
-    Route::get('edit/user/cv', [UserController::class, 'editCV'])->name('edit.cv');
-    Route::post('update/user/cv', [UserController::class, 'updateCV'])->name('update.cv');
-
-    Route::any('search/result', [JobController::class, 'searchResult'])->name('search.jobs');
+    Route::controller(UserController::class)->group(function() {
+        Route::get('/user/profile', 'profile')->name('profile');
+        Route::get('/user/applications', 'userApplications')->name('user.applications');
+        Route::get('/savedJobs', 'savedJobs')->name('save.jobs');
+        Route::get('/edit/profile', 'edit')->name('edit.profile');
+        Route::post('/update/profile', 'update')->name('update.profile');
+        Route::get('edit/user/cv', 'editCV')->name('edit.cv');
+        Route::post('update/user/cv', 'updateCV')->name('update.cv');
+    });
 
     // Admin Dashboard Routes
-    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin');
-    Route::get('show/admin', [AdminController::class, 'show'])->name('show.admin');
-    Route::get('create/admin', [AdminController::class, 'create'])->name('create.admin');
-    Route::post('store/admin', [AdminController::class, 'store'])->name('store.admin');
+    Route::controller(AdminController::class)->group(function() {
+        Route::get('admin/dashboard', 'index')->name('admin');
+        Route::get('show/admin', 'show')->name('show.admin');
+        Route::get('create/admin', 'create')->name('create.admin');
+        Route::post('store/admin', 'store')->name('store.admin');
+        Route::get('show/categories', 'showCategory')->name('show.category');
+        Route::get('create/category', 'createCategory')->name('create.category');
+        Route::post('store/category', 'storeCategory')->name('store.category');
+        Route::delete('delete/category/{category}', 'destroy')->name('delete.category');
+        Route::get('edit/category/{category}', 'editCategory')->name('edit.category');
+        Route::post('update/category/{category}', 'updateCategory')->name('update.category');
+
+
+    });
+
 });

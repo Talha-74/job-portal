@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -38,5 +39,46 @@ class AdminController extends Controller
         $admin->assignRole('admin');
 
         return redirect()->route('show.admin')->with('success', 'Admin Created Successfully');
+    }
+
+    function showCategory()
+    {
+        $categories = Category::all();
+        return view('Admin.categories.show', compact('categories'));
+    }
+
+    function createCategory()
+    {
+        return view('Admin.categories.create');
+    }
+
+    function storeCategory(Request $request)
+    {
+        $category = new Category();
+
+        $category->name = $request->name;
+
+        $category->save();
+
+        return redirect()->route('show.category')->with('success', 'Category created successfully');
+    }
+
+    function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('show.category')->with('success', 'Category deleted successfully');
+    }
+
+    function editCategory(Category $category)
+    {
+        return view('Admin.categories.edit', compact('category'));
+    }
+
+    function updateCategory(Request $request,  Category $category)
+    {
+        $category->name = $request->name;
+        $category->update();
+
+        return redirect()->route('show.category')->with('success', 'Category updated successfully');
     }
 }
