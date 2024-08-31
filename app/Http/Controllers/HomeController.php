@@ -34,6 +34,7 @@ class HomeController extends Controller
 
         $cities = City::all()->groupBy('province');
 
+        // dd(auth()->user()->getRoleNames());
 
 
         $keywords = TrendingKeywords::latest()->take(5)->get();
