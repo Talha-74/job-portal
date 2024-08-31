@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\JobDetailController;
@@ -8,21 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use function Laravel\Prompts\search;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 // Public routes (Guest only)
 
@@ -53,4 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::post('update/user/cv', [UserController::class, 'updateCV'])->name('update.cv');
 
     Route::any('search/result', [JobController::class, 'searchResult'])->name('search.jobs');
+
+    // Admin Dashboard Routes
+    Route::get('admin/dashboard', [AdminController::class, 'index'])->name('admin');
+    Route::get('show/admin', [AdminController::class, 'show'])->name('show.admin');
+    Route::get('create/admin', [AdminController::class, 'create'])->name('create.admin');
+    Route::post('store/admin', [AdminController::class, 'store'])->name('store.admin');
 });

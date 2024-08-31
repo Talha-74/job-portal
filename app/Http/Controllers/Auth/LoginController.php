@@ -22,11 +22,20 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Where to redirect users after login.
+     * Handle post-login redirection based on user roles.
      *
-     * @var string
+     * @param  \Illuminate\Http\Request  $requestp
+     * @param  \App\Models\User  $user
+     * @return mixed
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected function authenticated($request, $user)
+    {
+        if ($user->hasRole('admin') || $user->hasRole('super-admin')) {
+            return redirect()->route('admin'); // Redirect to admin dashboard
+        }
+
+        return redirect(RouteServiceProvider::HOME); // Default redirect to home
+    }
 
     /**
      * Create a new controller instance.
