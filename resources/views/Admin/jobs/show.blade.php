@@ -21,31 +21,39 @@
                     <button class="close" data-dismiss="alert"></button>
                 </div>
                 @endif
+                <h5 class="card-title mb-4 d-inline">Jobs</h5>
+                <a href="{{ route('job.create') }}" class="btn btn-primary mb-4 text-center float-right">Create Jobs</a>
 
-                <h5 class="card-title mb-4 d-inline">Admins</h5>
-
-                <a href="{{ route('create.admin') }}" class="btn btn-primary mb-4 text-center float-right">Create
-                    Admins</a>
-                <?php $i=0; ?>
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Job title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Company</th>
+                            <th scope="col">Job_region</th>
+                            <th scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($admins as $admin)
+                        <?php $i = 1; ?>
+                        @foreach ($jobs as $item)
                         <tr>
-                            <th scope="row">{{ ++$i }}</th>
-                            <td>{{ $admin->name }}</td>
-                            <td>{{ $admin->email }}</td>
-
+                            <th scope="row">{{ $i++ }}</th>
+                            <td>{{ $item->job_title }}</td>
+                            <td>{{ $item->category }}</td>
+                            <td>{{ $item->company }}</td>
+                            <td>{{ $item->job_region }}</td>
+                            <td>
+                            <form action="{{ route('delete.job', $item->id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this job?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger text-center">Delete</button>
+                            </form>
+                            </td>
                         </tr>
                         @endforeach
-
-
                     </tbody>
                 </table>
             </div>

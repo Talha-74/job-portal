@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Application;
 use App\Models\Category;
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,17 @@ class AdminController extends Controller
 {
     function index()
     {
-        return view('Admin.dashboard');
+        $jobs = Job::count();
+
+        $categories = Category::count();
+
+        $admins = User::whereHas('roles', function ($query) {
+            $query->whereIn('name', ['admin', 'super-admin']);
+        })->count();
+
+        $applied = Application::count();
+
+        return view('Admin.dashboard', compact('jobs', 'categories', 'admins', 'applied'));
     }
 
     function show()
@@ -80,5 +92,17 @@ class AdminController extends Controller
         $category->update();
 
         return redirect()->route('show.category')->with('success', 'Category updated successfully');
+    }
+
+    function showJobs() {
+        $jobs = Job::all();
+
+        return view('Admin.jobs.show', compact('jobs'));
+    }
+
+    function deleteJob(Job $job) {
+        $job->delete();
+
+        return redirect()->back()->with('success', 'Job deleted Successfully');
     }
 }
