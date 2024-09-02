@@ -54,8 +54,12 @@ Route::middleware('auth')->group(function () {
         Route::delete('delete/category/{category}', 'destroy')->name('delete.category');
         Route::get('edit/category/{category}', 'editCategory')->name('edit.category');
         Route::post('update/category/{category}', 'updateCategory')->name('update.category');
-
-
+        Route::get('show/jobs', 'showJobs')->name('show.jobs');
+        Route::delete('delete/job/{job}', 'deleteJob')->name('delete.job');
     });
 
+});
+
+Route::fallback(function() {
+    return "Requested Route does not exist";
 });
