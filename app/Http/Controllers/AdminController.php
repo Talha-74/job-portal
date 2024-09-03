@@ -40,6 +40,12 @@ class AdminController extends Controller
 
     function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required | email',
+            'password' => 'required',
+        ]);
+        
         $admin = new User();
 
         $admin->name = $request->name;
@@ -88,6 +94,10 @@ class AdminController extends Controller
 
     function updateCategory(Request $request,  Category $category)
     {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
         $category->name = $request->name;
         $category->update();
 
