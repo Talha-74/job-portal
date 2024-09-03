@@ -5,6 +5,15 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title mb-5 d-inline">Create Admins</h5>
+
+                @if($errors->any())
+                <div class="alert alert-danger mt-2">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+                </div>
+                @endif
+
                 <form method="POST" action="{{ route('store.admin') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-outline mb-4 mt-4">

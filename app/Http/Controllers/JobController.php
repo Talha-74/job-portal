@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use App\Models\Application;
 use App\Models\Category;
 use App\Models\City;
@@ -38,32 +39,9 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(JobRequest $request)
     {
         try {
-            $validator = Validator::make($request->all(), [
-                'job_title' => 'required',
-                'job_region' => 'required',
-                'job_type' => 'required',
-                'company' => 'required',
-                'vacancy' => 'required',
-                'experience' => 'required',
-                'salary' => 'required',
-                'gender' => 'required',
-                'application_deadline' => 'required',
-                'job_description' => 'required',
-                'responsibilities' => 'required',
-                'education_experience' => 'required',
-                'other_benefits' => 'required',
-                'image_path' => 'required',
-            ]);
-
-            if ($validator->fails()) {
-                return redirect(route('job.create'))
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
             if ($request->hasFile('image_path'))
                 $imagePath = $request->file('image_path')->store('public/job-images');
             $jobImage = url(Storage::url($imagePath));
@@ -171,19 +149,4 @@ class JobController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Job $job)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Job $job)
-    {
-        //
-    }
 }

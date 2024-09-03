@@ -59,7 +59,10 @@
                         <label for="job-title">Job Title</label>
                         <input type="text" name="job_title" class="form-control" id="job-title"
                             placeholder="Product Designer">
-                    </div>
+                            @error('job_title')
+                             <span class="text-danger"><strong>{{ $message }}</strong></span>
+                             @enderror
+                        </div>
 
                     <div class="form-group">
                         <label for="job-region">Job Region</label>
@@ -72,6 +75,9 @@
                             @endforeach
                             @endforeach
                         </select>
+                        @error('job_region')
+                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -81,16 +87,25 @@
                             <option>Part Time</option>
                             <option>Full Time</option>
                         </select>
+                        @error('job_type')
+                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="company">Company</label>
                         <input type="text" name="company" class="form-control" id="company" placeholder="Company Name">
+                        @error('company')
+                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="job-location">Vacancy</label>
                         <input name="vacancy" type="text" class="form-control" id="job-location" placeholder="e.g. 3">
+                        @error('job_location')
+                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -102,15 +117,21 @@
                             <option>3-6 years</option>
                             <option>6-9 years</option>
                         </select>
+                        @error('experience')
+                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="job-type">Salary</label>
+                        <label for="salary">Salary</label>
                         <select name="salary" class="selectpicker border rounded" id="job-type" data-style="btn-black"
                             data-width="100%" data-live-search="true" title="Select Salary">
                             <option>$50k - $70k</option>
                             <option>$70k - $100k</option>
                             <option>$100k - $150k</option>
                         </select>
+                        @error('salary')
+                       <span class="text-danger"><strong>{{ $message }}</strong></span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -120,25 +141,32 @@
                             @foreach ($categories as $category)
                             <option>{{ $category->name }}</option>
                             @endforeach
-
                         </select>
+                        @error('category')
+                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="job-type">Gender</label>
+                        <label for="gender">Gender</label>
                         <select name="gender" class="selectpicker border rounded" id="" data-style="btn-black"
                             data-width="100%" data-live-search="true" title="Select Gender">
                             <option>Male</option>
                             <option>Female</option>
                             <option>Any</option>
                         </select>
+                        @error('gender')
+                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="job-location">Application Deadline</label>
                         <input name="application_deadline" type="date" min="2024-01-01" max="2028-01-02"
                             class="form-control" id="" placeholder="e.g. 20-12-2022">
-
+                            @error('application_deadline')
+                            <span class="text-danger"><strong>{{ $message }}</strong></span>
+                            @enderror
                     </div>
 
                     <div class="row form-group">
@@ -174,7 +202,11 @@
                     </div>
                     <div class="row form-group">
                         <label for="image_path">Job Related Image </label>
-                        <input type="file" name="image_path" id="image_path" class="form-control" style="padding-bottom: 40px;">
+                        <input type="file" name="image_path" id="image_path" class="form-control"
+                            style="padding-bottom: 40px;">
+                            @error('image_path')
+                       <span class="text-danger"><strong>{{ $message }}</strong></span>
+                            @enderror
                     </div>
                     <div class="col-lg-4 ml-auto">
                         <div class="row">
