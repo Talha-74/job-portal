@@ -45,7 +45,7 @@ class AdminController extends Controller
             'email' => 'required | email',
             'password' => 'required',
         ]);
-        
+
         $admin = new User();
 
         $admin->name = $request->name;
@@ -114,5 +114,9 @@ class AdminController extends Controller
         $job->delete();
 
         return redirect()->back()->with('success', 'Job deleted Successfully');
+    }
+
+    function appliedAdmin() {
+        return view('Admin.applied.show');
     }
 }

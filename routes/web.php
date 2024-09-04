@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
         Route::post('update/category/{category}', 'updateCategory')->name('update.category');
         Route::get('show/jobs', 'showJobs')->name('show.jobs');
         Route::delete('delete/job/{job}', 'deleteJob')->name('delete.job');
+
+        Route::get('admin/applied', 'appliedAdmin')->name('admin.applied');
     });
 
 });

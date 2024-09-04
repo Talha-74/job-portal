@@ -40,7 +40,7 @@
                             <a class="nav-link" href="{{ route('show.jobs') }}" style="margin-left: 20px;">Jobs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="applications-admins/show-apps.html"
+                            <a class="nav-link" href="{{ route('admin.applied') }}"
                                 style="margin-left: 20px;">Applications</a>
                         </li>
                     </ul>

@@ -13,6 +13,7 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,6 +32,8 @@ class JobController extends Controller
      */
     public function create()
     {
+        // $route = Route::currentRouteAction();
+        dd($route);
         $categories = Category::all();
         $cities = City::all()->groupBy('province');
         return view('job', compact('categories', 'cities'));
