@@ -1,4 +1,4 @@
-@extends('Admin.applied.show')
+@extends('layouts.admin_layout')
 @section('content')
 <div class="row">
     <div class="col">
@@ -18,30 +18,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $i = 1; ?>
+                        @foreach ($appliedJobs as $item)
                         <tr>
-                            <th scope="row">1</th>
-                            <td><a class="btn btn-success" href="#">CV</a></td>
-                            <td>1</td>
-                            <td>Web Dev</td>
-                            <td>Web Coding</td>
+                            <th scope="row">{{ $i++ }}</th>
+                            <td><a class="btn btn-success" href="{{ $item->cv }}">CV</a></td>
+                            <td><a class="btn btn-success" href="{{ route('job.detail', $item->id) }}">Job Details</a></td>
+                            <td>{{ $item->job_title }}</td>
+                            <td>{{ $item->company }}</td>
                             <td><a href="#" class="btn btn-danger  text-center ">delete</a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><a class="btn btn-success" href="#">CV</a></td>
-                            <td>1</td>
-                            <td>Web Dev</td>
-                            <td>Web Coding</td>
-                            <td><a href="#" class="btn btn-danger  text-center ">delete</a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><a class="btn btn-success" href="#">CV</a></td>
-                            <td>1</td>
-                            <td>Web Dev</td>
-                            <td>Web Coding</td>
-                            <td><a href="#" class="btn btn-danger  text-center ">delete</a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

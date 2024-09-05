@@ -117,6 +117,7 @@ class AdminController extends Controller
     }
 
     function appliedAdmin() {
-        return view('Admin.applied.show');
+        $appliedJobs = Application::all();
+        return view('Admin.applied.show', compact('appliedJobs'));
     }
 }
