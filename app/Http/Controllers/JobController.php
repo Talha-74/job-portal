@@ -33,7 +33,6 @@ class JobController extends Controller
     public function create()
     {
         // $route = Route::currentRouteAction();
-        dd($route);
         $categories = Category::all();
         $cities = City::all()->groupBy('province');
         return view('job', compact('categories', 'cities'));
