@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('delete/job/{job}', 'deleteJob')->name('delete.job');
 
         Route::get('admin/applied', 'appliedAdmin')->name('admin.applied');
+        Route::delete('/delete/{job}', 'deleteAdminJob')->name('admin.delete.job');
     });
 
 });

@@ -104,20 +104,30 @@ class AdminController extends Controller
         return redirect()->route('show.category')->with('success', 'Category updated successfully');
     }
 
-    function showJobs() {
+    function showJobs()
+    {
         $jobs = Job::all();
 
         return view('Admin.jobs.show', compact('jobs'));
     }
 
-    function deleteJob(Job $job) {
+    function deleteJob(Job $job)
+    {
         $job->delete();
 
         return redirect()->back()->with('success', 'Job deleted Successfully');
     }
 
-    function appliedAdmin() {
+    function appliedAdmin()
+    {
         $appliedJobs = Application::all();
         return view('Admin.applied.show', compact('appliedJobs'));
+    }
+
+    function deleteAdminJob(Job $job)
+    {
+        $job->delete();
+
+        return back()->with('success', 'job deleted Successfully');
     }
 }

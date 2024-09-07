@@ -23,10 +23,15 @@
                         <tr>
                             <th scope="row">{{ $i++ }}</th>
                             <td><a class="btn btn-success" href="{{ $item->cv }}">CV</a></td>
-                            <td><a class="btn btn-success" href="{{ route('job.detail', $item->id) }}">Job Details</a></td>
+                            <td><a class="btn btn-success" href="{{ route('job.detail', ['job' => $item->id]) }}">Job Details</a></td>
                             <td>{{ $item->job_title }}</td>
                             <td>{{ $item->company }}</td>
-                            <td><a href="#" class="btn btn-danger  text-center ">delete</a></td>
+                            <td><form action="{{ route('admin.delete.job', ['job' => $item->id]) }}" method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this job?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger text-center">Delete</button>
+                            </form></td>
                         </tr>
                         @endforeach
                     </tbody>
